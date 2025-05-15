@@ -2,34 +2,54 @@ package com.example.demofx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+    public void start(Stage escenario) {
+        TextField campoIzquierdo = new TextField();
+        TextField campoDerecho1 = new TextField();
+        TextField campoDerecho2 = new TextField();
 
-        Group controles = new Group();
-        final Button btn = new Button();
-        btn.setText("Hola Mundo fx");
+        Button botonMoverADerecha1 = new Button("<--->");
+        Button botonMoverADerecha2 = new Button("<--->");
 
-        controles.getChildren().add(btn);
+        botonMoverADerecha1.setOnAction(e -> {
+            String almacen = campoDerecho1.getText();
+            campoDerecho1.setText(campoIzquierdo.getText());
+            campoIzquierdo.setText(almacen);
+        });
 
-        Scene scene = new Scene(controles, 640, 480);
+        botonMoverADerecha2.setOnAction(e -> {
+            String a;
+            a= campoDerecho2.getText();
+            campoDerecho2.setText(campoDerecho1.getText());
+            campoDerecho1.setText(a);
+        });
 
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        HBox contenedor = new HBox(10, campoIzquierdo, botonMoverADerecha1, campoDerecho1, botonMoverADerecha2, campoDerecho2);
+        contenedor.setAlignment(Pos.CENTER);
+
+        Scene escena = new Scene(contenedor, 600, 100);
+        escenario.setTitle("Pasatexto");
+        escenario.setScene(escena);
+        escenario.show();
     }
+
     public static void main(String[] args) {
         launch();
     }
+
 }
+
 
 
 
