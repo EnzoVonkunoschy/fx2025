@@ -62,10 +62,10 @@ public class HelloApplication extends Application {
 
         btnMiddleRight.setOnAction(e -> {
             if (middleField.getText().isEmpty() && rightField.getText().isEmpty()) {
-                rightField.setText(middleField.getText());
+                middleField.setText(rightField.getText());
                 middleField.clear();
             } else if (middleField.getText().isEmpty() && !rightField.getText().isEmpty()) {
-                middleField.setText(rightField.getText());
+                rightField.setText(middleField.getText());
                 rightField.clear();
             }
         });
